@@ -1,0 +1,78 @@
+<!DOCTYPE HTML>
+<html>
+    <head>
+        <title>REGISTRATION FORM</title>
+        <style>
+           #submit{
+            font-size: 20px;
+          }
+          .heading{
+            background-color : peachpuff
+          }
+           
+        </style>
+    </head>
+    <body id="res">
+        <center>
+        <h1 id="h1"><u>REGISTRATION FORM</u></h1>
+        <form id="form" style="border:2px solid black; padding-bottom: 5%; margin-top: 40px; width:600px; background-color:azure;">
+            <div class="form" style="padding-top: 20px;;">
+            <label for="name" class="na">NAME</label>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+            <input type="text" style="border-radius: 20px; height: 5%;" id="text" name="name" placeholder="Enter your name" required><br><br>
+            <label for="email" class="em">Email</label>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+            <input type="email"id="email" style="border-radius: 20px; height: 5%;" name="email" placeholder="Enter your Email" required><br><br>
+            <label for="password" class="pas">Password</label>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+            <input type="password" id="password" style="border-radius: 20px; height: 5%;" name="password" placeholder="Enter your password" required><br><br>
+            <label for="Date of birth" class="do">Date Of Birth</label>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+            <input type="date"  id="dob" style="border-radius: 20px; height: 5%; width:20%" min="1980-04-30" max="2005-04-30" name="dob" placeholder="dd/mm/yyyy" required><br><br>
+            <label for="accept" style="font-size: 20px;"><b>Accept Terms & Conditions</b></label>&nbsp;
+            <input type="checkbox"  id="check"  name="Accept Terms & Conditions" required><br><br>
+            <div class="s">
+           <button onclick="result()" class="sub" id="submit">Submit</button>
+            </div>
+            </div>
+        </form>
+        </center>
+        <div class="box" style="border:2px solid black; padding-bottom: 5%; margin-top: 40px;">
+            <centre>
+            <h1 style="padding-top: 50px; text-align: center;"><u>ENTRIES</u></h1>
+            <table style="width:80%; margin-left: 10%;" id="table" border="2">
+                <tr class="heading">
+                    <th>NAME</th>
+                    <th>E-MAIL</th>
+                    <th>PASSWORD</th>
+                    <th>DOB</th>
+                    <th>ACCEPTED TERMS?</th>
+                </tr>
+              </table>
+              </centre>
+        </div>
+        <script type="text/javascript">
+         var form = document.getElementById('form');
+        var tableBody = document.querySelector('#table tbody');
+        form.addEventListener('submit',function(event){
+            event.preventDefault();
+            var name = document.getElementById('text').value;
+            var email = document.getElementById('email').value;
+            var password = document.getElementById('password').value;
+            var dob = document.getElementById('dob').value;
+            var checkbox = document.getElementById('check').checked;
+            localStorage.setItem("NAME",name);
+            localStorage.setItem("E-MAIL", email);
+            localStorage.setItem("PASSWORD", password);
+            localStorage.setItem("DOB", dob);
+            localStorage.setItem("ACCEPTED TERMS?", checkbox);
+        var newRow = document.createElement('tr');
+        newRow.innerHTML = `
+        <td>${name}</td>
+        <td>${email}</td>
+        <td>${password}</td>
+        <td>${dob}</td>
+        <td>${checkbox ? 'Yes' : 'No'}</td>`;
+        tableBody.appendChild(newRow);
+        form.reset();
+        });
+
+        </script>
+    </body>
+</html>
